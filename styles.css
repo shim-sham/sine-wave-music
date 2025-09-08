@@ -1,0 +1,16 @@
+body{
+    background-color: #dad0c4;
+    color:#7e4828;
+    font-family: serif;
+
+}
+
+button{
+    font-family: serif;
+}
+#canvas {
+   border: 5px solid #3c2517;
+   height: 500px;
+   width: 900px;
+   margin-bottom: 2em;
+}
