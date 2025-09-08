@@ -79,7 +79,11 @@ function handle(){
         }
         console.log(noteslist)
     }
-   let j=0
+    if (noteslist.length>0){
+        frequency(parseInt(noteslist[0]))
+        drawWave()
+    }
+   let j=1
    repeat = setInterval(()=>{
     if (j<noteslist.length){
         frequency(parseInt(noteslist[j]));
