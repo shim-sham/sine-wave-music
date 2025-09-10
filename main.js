@@ -8,7 +8,6 @@ const gainNode=audioCtx.createGain()
 const oscillator = audioCtx.createOscillator()
 oscillator.connect(gainNode);
 gainNode.connect(audioCtx.destination);
-oscillator.type = "sine"
 oscillator.start();
 var reset = false
 
@@ -39,21 +38,30 @@ noteNames.set("b",493.88);
 
 
 function line(){
+    if (document.getElementById("sine").checked){
+    oscillator.type = "sine"
+    }else if (document.getElementById("triangle").checked){
+        oscillator.type="triangle"
+    }else if (document.getElementById("saw").checked){
+        oscillator.type="sawtooth"
+    }else if (document.getElementById("square").checked){
+        oscillator.type="square"
+    }
     y=height/2 + (volSlider.value/100*40 * Math.sin(2*Math.PI * freq * x * 0.5 * length))
     ctx.lineTo(x,y);
     
     ctx.strokeStyle= colourPicker.value
+    ctx.stroke()
     if (fill.checked){
         ctx.moveTo(x, height/2);
         ctx.closePath();
         ctx.fill()
     }
     
-    ctx.stroke()
+    
 
     x = x+1;
     counter++;
-    console.log(counter)
     if (counter>timePerNote/20){
         clearInterval(interval)
     }
@@ -114,7 +122,9 @@ function handle(){
 
 }
 function drawWave() {
+    
     clearInterval(interval);
+    
     if (reset){
         ctx.clearRect(0, 0, width, height);
         x = 0;
@@ -131,4 +141,19 @@ document.addEventListener('click', () => {
   if (!audioCtx) {
     initAudio();
   }
+});
+document.getElementById('ripto').addEventListener('change', function() {
+    if (this.checked) {
+        document.documentElement.className = 'theme-ripto';
+    }
+});
+document.getElementById('vona').addEventListener('change', function() {
+    if (this.checked) {
+        document.documentElement.className = 'theme-vona';
+    }
+});
+document.getElementById('academic').addEventListener('change', function() {
+    if (this.checked) {
+        document.documentElement.className = 'theme-academic';
+    }
 });

@@ -1,17 +1,58 @@
+:root{
+   --light: #dad0c4;
+    --dark: #7e4828;
+    --darker: #3c2517;
+    --lighter: #ede4d9;
+    --font: serif;
+}
+
 body{
-    background-color: #dad0c4;
-    color:#7e4828;
-    font-family: serif;
+    background-color: var(--light);
+    color:var(--dark);
+    font-family: var(--font);
 
 }
 
 button{
-    font-family: serif;
+    font-family: var(--font);
+    background-color: var(--darker);
+    color: var(--light);
 }
 #canvas {
-   border: 5px solid #3c2517;
-   height: 500px;
-   width: 900px;
-   margin-bottom: 2em;
-   background-color: #ede4d9;
+    border: 5px solid var(--darker);
+    height: 500px;
+    width: 900px;
+    margin-bottom: 2em;
+    background-color: var(--lighter);
+}
+input[type="radio"]:checked + label img {
+    transform: scale(1.2);
+}
+img{
+    width:20vw;
+}
+input[name="album"] {
+
+    opacity: 0;
+}
+.theme-ripto {
+    --light: #dad0c4;
+    --dark: #7e4828;
+    --darker: #3c2517;
+    --lighter: #ede4d9;
+    --font: serif;
+}
+.theme-vona{
+    --light:  #faf1d1;
+    --dark: #9d6c4e;
+    --darker: #814732;
+    --lighter: #ebc364 ;
+    --font: monospace;
+}
+.theme-academic{
+    --light:  #faf1d1;
+    --dark: #62b2b7;
+    --darker: #b0302e;
+    --lighter: #a4d8c7 ;
+    --font:sans-serif;
 }

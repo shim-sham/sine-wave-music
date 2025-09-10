@@ -15,9 +15,33 @@
 		<input type="text" id="input">
 		<button id="submit" onclick= "handle()" >submit!</button>
 		<input type="color" id="colour" value="#3c2517">
-		<input type="range" min="1" max="100" value="100" id="vol-slider"><br><br>
+		<input type="range" min="1" max="100" value="100" id="vol-slider">
+		<label for="vol-slider">Volume</label><br><br>
     	<input type="checkbox" id="fill" name="fill">
-		<label for="fill">Fill</label>	
+		<label for="fill">Fill</label>	<br>
+		<h3>Wave type</h3>
+		<input type="radio" id="sine" name="wave-type" value="sine" checked>
+		<label for="sine">sine</label>
+	
+      <input type="radio" id="triangle" name="wave-type" value="triangle" >
+      <label for="triangle">triangle</label>
+
+      <input type="radio" id="saw" name="wave-type" value="saw">
+      <label for="saw">saw</label>
+	  <input type="radio" id="square" name="wave-type" value="square" >
+      <label for="square">square</label>
+	</div>
+	<div>
+				<br><h3>a little tribute!</h3>
+		<p>select an album cover to pay a tribute to their themes!</p><br><br>
+		<input type="radio" id="ripto" name="album" value="ripto" checked>
+		<label for="ripto"><img src="media/ripto.png" alt="ripto album"></label>
+	
+      <input type="radio" id="vona" name="album" value="vona" >
+      <label for="vona"><img src="media/vona-vella.png" alt="vona vella, i thought we were falling in love"></label>
+
+      <input type="radio" id="academic" name="album" value="academic" >
+      <label for="academic"><img src="media/academic.png" alt="the academic"></label>
 	</div>
 <script src="main.js"></script>
 </body>
