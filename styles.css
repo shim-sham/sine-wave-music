@@ -10,7 +10,7 @@ body{
     background-color: var(--light);
     color:var(--dark);
     font-family: var(--font);
-
+    margin:30px;
 }
 
 button{
@@ -30,6 +30,9 @@ input[type="radio"]:checked + label img {
 }
 img{
     width:20vw;
+}
+img:hover{
+    cursor:pointer;
 }
 input[name="album"] {
 
