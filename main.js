@@ -2,7 +2,7 @@ const input=document.getElementById("input")
 var canvas = document.getElementById("canvas")
 var ctx=canvas.getContext("2d")
 const colourPicker = document.getElementById("colour")
-
+const fill = document.getElementById("fill")
 const audioCtx = new AudioContext();
 const gainNode=audioCtx.createGain()
 const oscillator = audioCtx.createOscillator()
@@ -11,7 +11,7 @@ gainNode.connect(audioCtx.destination);
 oscillator.type = "sine"
 oscillator.start();
 var reset = false
-var amplitude = 40;
+
 var counter = 0;
 var interval = null
 var width = ctx.canvas.width
@@ -39,19 +39,25 @@ noteNames.set("b",493.88);
 
 
 function line(){
-    y=height/2 + (amplitude * Math.sin(2*Math.PI * freq * x * 0.5 * length))
+    y=height/2 + (volSlider.value/100*40 * Math.sin(2*Math.PI * freq * x * 0.5 * length))
     ctx.lineTo(x,y);
+    
     ctx.strokeStyle= colourPicker.value
-
+    if (fill.checked){
+        ctx.moveTo(x, height/2);
+        ctx.closePath();
+        ctx.fill()
+    }
+    
     ctx.stroke()
+
     x = x+1;
     counter++;
+    console.log(counter)
     if (counter>timePerNote/20){
         clearInterval(interval)
     }
 }
-gainNode.gain.value=0;
-
 function frequency(pitch){
     freq=pitch/10000
     gainNode.gain.setValueAtTime(volSlider.value, audioCtx.currentTime)
@@ -118,6 +124,7 @@ function drawWave() {
     }
     counter = 0;
     interval = setInterval(line,20)
+    
     reset=false
 }
 document.addEventListener('click', () => {
