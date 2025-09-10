@@ -9,6 +9,9 @@ const oscillator = audioCtx.createOscillator()
 oscillator.connect(gainNode);
 gainNode.connect(audioCtx.destination);
 oscillator.start();
+
+const recording_toggle = document.getElementById("recording");
+
 var reset = false
 
 var counter = 0;
@@ -20,6 +23,8 @@ var timePerNote = 0;
 var length=0;
 
 var volSlider = document.getElementById("vol-slider")
+
+
 
 noteNames = new Map();
 noteNames.set("c",261.63);
@@ -36,6 +41,47 @@ noteNames.set("a",440.00);
 noteNames.set("a#",466.16);
 noteNames.set("b",493.88);
 
+var blob, recorder = null;
+var chunks = [];
+var is_recording = false;
+
+
+function startRecording(){
+    const canvasStream = canvas.captureStream(20); 
+    const combinedStream = new MediaStream();
+    
+    const audioDestination = audioCtx.createMediaStreamDestination();
+    canvasStream.getVideoTracks().forEach(track => combinedStream.addTrack(track));
+    audioDestination.stream.getAudioTracks().forEach(track => combinedStream.addTrack(track));
+    gainNode.connect(audioDestination);
+    recorder = new MediaRecorder(combinedStream, { mimeType: 'video/webm' });
+    recorder.ondataavailable = e => {
+        if (e.data.size > 0) {
+            chunks.push(e.data);
+        }
+    };
+    recorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'recording.webm';
+        a.click();
+        URL.revokeObjectURL(url);
+    };
+    recorder.start();
+}
+function toggle(){
+    if (is_recording){
+        is_recording = false;
+        recording_toggle.innerHTML = "start recording"
+        recorder.stop()
+    } else {
+        is_recording=true;
+        recording_toggle.innerHTML = "stop recording";
+        startRecording()
+    }
+}
 
 function line(){
     if (document.getElementById("sine").checked){
@@ -157,3 +203,4 @@ document.getElementById('academic').addEventListener('change', function() {
         document.documentElement.className = 'theme-academic';
     }
 });
+
