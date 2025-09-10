@@ -11,3 +11,5 @@ Followed the oscillart tutorial and did some research to add my own aspects (add
 - learnt about sine waves
 - learnt about canvas
 - learnt how to record and save things in javascript on a website
+
+[![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
