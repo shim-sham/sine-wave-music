@@ -10,3 +10,4 @@ Followed the oscillart tutorial and did some research to add my own aspects (add
 - struggled with getting the fill right
 - learnt about sine waves
 - learnt about canvas
+- learnt how to record and save things in javascript on a website
